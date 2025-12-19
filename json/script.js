@@ -1,6 +1,6 @@
 /* Configuration de l'API */
 
-const API_URL = "http://127.0.0.1:5000/api";
+const API_URL = "https://wildchips.onrender.com";
 
 let loginSound;
 let genreClickSound;
@@ -439,4 +439,5 @@ function hideMovieDetails() {
     document.getElementById('movie-details-screen').classList.add('hidden');
     document.getElementById('results-grid').classList.remove('hidden');
     document.getElementById('action-buttons').classList.remove('hidden');
+
 }
