@@ -1,0 +1,584 @@
+/* Base */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: "Mermaid" , 'Mirage Black'/*, "KGPrymaryItalics", Geneva, "Moving", sans-serif*/; }
+body { /*background: #0d0d0d; */
+    /*background: url('./img/templates_powerbi_gif_03.gif.gif') no-repeat center center fixed; */
+    background-size: cover; 
+    color: #fff; 
+    overflow-x: hidden;
+    height: 100vh; 
+    width: 100vw; 
+}
+
+@font-face {
+    font-family: 'Mirage Black'; /* Le nom exact utilisé dans votre font-family */
+    src: url('../fonts/mirage_black_bold.otf') format('truetype'); /* Chemin d'accès au fichier */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mermaid'; /* Le nom exact utilisé dans votre font-family */
+    src: url('../fonts/Mermaid1001.ttf') format('truetype'); /* Chemin d'accès au fichier */
+    font-weight: normal;
+    font-style: normal;
+}
+
+#background-video {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: -2; 
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    
+    body {
+        overflow-y: auto;
+        height: auto;
+    }
+
+    #login-screen {
+        
+        flex-direction: column; 
+        height: auto;
+    }
+
+    .login-right {
+        order: 1; 
+        width: 100%;
+        min-height: 150px; 
+        padding: 15% 10% 5%; 
+    }
+
+    .login-left {
+        order: 2; 
+        width: 100%;
+        padding: 5% 10%; 
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .question-box {
+        width: 95%;
+        margin-top: 10%;
+        padding: 30px 20px;
+    }
+    
+    #results-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .movie-placeholder {
+        height: 200px; 
+    }
+}
+
+/* blocs cachés */
+.hidden { display: none !important; }
+
+/* Style des boutons */
+
+.btn_count {
+    padding: 10px 10px;
+    margin-bottom: 15px;
+    /*border: 1px solid rgba(255, 255, 255, 0.2);*/
+    border: 1px solid #492232;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #3f1b27, #1f0e14);
+    color: #fa89e1;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-size: 0.75rem;
+    font-weight: 50;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn {
+    padding: 12px 30px;
+    margin-top: 15px;
+    /*border: 1px solid rgba(255, 255, 255, 0.2);*/
+    border: 1px solid #492232;
+    border-radius: 50px;
+    background: linear-gradient(145deg, #3f1b27, #1f0e14);
+    color: #fa89e1;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn:hover { 
+    background: linear-gradient(45deg, #ff00aa, #c712df); 
+    border-color: transparent;
+    color: #000; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 51, 194, 0.4);
+}
+
+.btn-skip { 
+    border-color: transparent; 
+    background: transparent;
+    color: #fa89e1; 
+    font-size: 0.9rem;
+    box-shadow: none;
+}
+.btn-skip:hover { 
+    background: #240c1f; 
+    color: #faa2e7; 
+    box-shadow: none;
+    transform: none;
+}
+
+.results-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+/* Style spécifique pour le bouton déconnexion */
+.btn-logout {
+    padding: 12px 30px;
+    margin-top: 15px;
+    /*border: 1px solid rgba(255, 255, 255, 0.2);*/
+    border: 1px solid #492232;
+    border-radius: 50px;
+    background: linear-gradient(145deg, #3f1b27, #1f0e14);
+    color: #fa89e1;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-logout:hover {
+    background: linear-gradient(45deg, #ff00aa, #c712df);
+    border-color: transparent;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 51, 194, 0.4);
+}
+
+/* Style des input utilisateur */
+input {
+    width: 100%; padding: 15px 20px;
+    background: linear-gradient(to right, #3f1b27, #1f0e14); 
+    border: 1px solid #492232; 
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem; outline: none;
+    transition: 0.3s;
+}
+input:focus { 
+    border-color: #8a415f; 
+    background: #240c1f;
+}
+
+input::placeholder {
+    color: #fa89e1; 
+    opacity: 1; 
+}
+
+
+input::-webkit-input-placeholder {
+    color: #fa89e1; 
+}
+
+
+input::-moz-placeholder {
+    color: #fa89e1; 
+    opacity: 1;
+}
+
+
+input:-ms-input-placeholder {
+    color: #fa89e1;
+}
+
+/* Style et animation du logo */
+@keyframes organicForm {
+    0% { opacity: 0; transform: scale(0.8) filter(blur(20px)); letter-spacing: 20px; }
+    50% { opacity: 1; transform: scale(1.1) filter(blur(0px)); letter-spacing: 0px; }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes levitate {
+    0% { 
+        transform: translateY(0px); 
+        /* Lueur douce au repos */
+        filter: drop-shadow(0 0 10px rgba(255, 0, 85, 0.3));
+    }
+    100% { 
+        transform: translateY(-20px); 
+        /* Lueur intense et double (Rose + Jaune) en lévitation haute */
+        filter: drop-shadow(0 0 25px rgba(202, 47, 163, 0.8)) 
+                drop-shadow(0 0 50px rgba(153, 0, 255, 0.4));
+    }
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+    
+    background: linear-gradient(45deg, #5e0a42, #530e5c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    
+    
+    transition: filter 0.5s ease;
+}
+
+.logo img {
+    height: 650px; 
+    width: auto;
+    filter: drop-shadow(5px 15px 10px rgba(0, 0, 0, 0.7));
+}
+
+.logo-floating {
+    animation: levitate 3s ease-in-out infinite alternate;
+}
+
+/* Style écran d'accueil (avant l'animation)*/
+#intro-screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    background: transparent;
+}
+#intro-logo { animation: organicForm 2s ease-out forwards; }
+
+/* Style de l'animation d'entrée */
+#cut-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 100;
+    pointer-events: none;
+    display: flex;
+}
+.curtain {
+    width: 50%; height: 100%;
+    background: #000;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+    position: relative;
+}
+.cut-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 3px;
+    background: #fff;
+    box-shadow: 0 0 25px #fff, 0 0 10px #fa89e1;
+    opacity: 0;
+    z-index: 101;
+}
+
+.curtains-closed .curtain-left { transform: translateX(0); border-right: 1px solid #222; }
+.curtains-closed .curtain-right { transform: translateX(0); border-left: 1px solid #222; }
+
+.curtains-open .curtain-left { transform: translateX(-100%); }
+.curtains-open .curtain-right { transform: translateX(100%); }
+
+@keyframes slashFlash {
+    0% { opacity: 0; height: 0; top: 50%; }
+    50% { opacity: 1; height: 100%; top: 0; }
+    100% { opacity: 0; }
+}
+.slashing .cut-line {
+    left: 50%;
+    transform: translateX(-50%);
+    animation: slashFlash 0.4s ease-out;
+}
+
+/* Style écran d'accueil (après l'animation) */
+#login-screen {
+    display: flex; height: 100vh; width: 100vw;
+}
+.login-left {
+    flex: 1;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 10%;
+    /* background: linear-gradient(135deg, #422130 0%, #200101 100%); */
+    background: transparent;
+}
+.login-right {
+    flex: 1; 
+    display: flex; align-items: center; justify-content: center;
+    /* background: linear-gradient(150deg, #422130 0%, #200101 100%); position: relative; */
+    background: transparent;
+}
+
+
+
+/* Style du container d'inscription */
+.input-group { margin-bottom: 20px; }
+.create-account { margin-top: 15px; font-size: 0.9rem; color: #1f141a; filter: drop-shadow(-1px 1px 1px #fa89e1);}
+.create-account span { color: #fa89e1; cursor: pointer; text-decoration: none; font-weight: bold; transition: 0.3s; }
+.create-account span:hover { color: #8f5c6d; }
+
+/* Style des titres */
+h1 { margin-bottom: 25px; font-size: 2.5rem; line-height: 1.2; color: #240c1f}
+h2 { font-weight: 400; color: #faa2e7; margin-bottom: 10px; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.titre {
+    background: linear-gradient(180deg, #f38ac9, #f51fbf); 
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(-1px 5px 1px rgba(32, 16, 30, 2));
+    
+    transition: filter 0.5s ease;
+}
+
+.titre_reco {
+    /* Styles pour la couleur et la taille */
+    color: #faa2e7; /* Exemple : couleur magenta/rose */
+    font-size: 1.5em; /* Exemple : taille de police plus grande */
+    font-weight: bold;
+    filter: drop-shadow(-1px 5px 1px rgba(32, 16, 30, 2));
+    /* Styles pour le positionnement (si nécessaire) */
+    text-transform: uppercase;
+    text-align: center; 
+    margin: 10px 0; /* Ajoute un peu de marge si le style inline n'est pas suffisant */
+}
+
+/* Style de l'application après authentification */
+#app-screen {
+    height: 100vh;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    padding-top: 10px;
+    /* background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); */
+    background: transparent;
+}
+
+#app-screen .logo {
+    
+    margin-top: -10px; 
+    margin-bottom: 1px; 
+}
+
+#app-screen .logo img {
+    height: 350px; /* Réduire la hauteur de l'image (ajustez cette valeur) */
+    width: auto; 
+}
+
+/* Style du bloc de questions
+.question-box {
+    margin-top: 1%;
+    width: 85%; max-width: 650px;
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(160deg, #3f1b27 0%, #1f0e14 100%);
+    border-radius: 25px;
+    /* border: 1px solid rgba(255,255,255,0.05); 
+    border: 1px solid #492232;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    animation: fadeIn 0.6s ease-out;
+}
+*/
+.options-grid {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 45px;
+}
+
+
+/* Style des résultats affichés après une action */
+#results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    width: 100%; max-width: 1300px;
+    margin-top: 30px;
+    overflow-y: auto;
+    scrollbar-width: none; 
+    flex-grow: 1;
+    padding-bottom: 100px;
+}
+#results-grid::-webkit-scrollbar { display: none; }
+
+/* Style des cartes de films */
+.movie-card {
+    background: linear-gradient(180deg, #3f1b27 0%, #1f0e14 100%);
+    padding: 20px;
+    text-align: center;
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 20px;
+    border: 1px solid #492232;
+}
+.movie-card:hover { 
+    transform: translateY(-10px) scale(1.02); 
+    border-color: #faa2e7;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.movie-placeholder {
+    position: relative;
+    width: 100%; 
+    height: 280px; 
+    background-image: url('../img/image_not_found.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background: #111; */
+    border-radius: 15px;
+    margin-bottom: 15px;
+    display: flex; align-items: center; justify-content: center; color: #444; font-weight: bold;
+    overflow: hidden; /* Masquer tout débordement de l'image */
+}
+
+.movie-placeholder img {        /* Style pour l'image dans le placeholder */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assurer que l'image couvre entièrement le conteneur */
+    border-radius: 15px; /* Garder les bords arrondis */
+    transition: transform 0.5s ease;
+}
+.movie-card:hover .movie-placeholder img {
+    transform: scale(1.05); /* Zoom subtil au survol */
+}
+
+.movie-card h3 { margin-bottom: 5px; color: #faa2e7; }
+.movie-card p { color: #fa89e1; font-size: 0.9rem; }
+
+.movie-actor {
+    margin-top: 5px;
+    color: #fa89e1;      
+    font-size: 0.85rem;
+    font-style: italic; 
+}
+
+/* Style des cartes détaillées (quand on clique sur un film en particulier quoi) */
+#movie-details-screen {
+    width: 100%;
+    max-width: 900px;
+    /* max-width: 900px; /* Limiter la largeur sur grand écran */
+    margin-top: 30px;
+    padding: 30px;
+    background: linear-gradient(180deg, #3f1b27 0%, #1f0e14 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    
+    /* Pour que les éléments internes se positionnent bien */
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.details-content {
+    display: flex;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.details-poster {
+    width: 250px;
+    height: 350px;
+    min-width: 250px;
+    background-image: url('../img/image_not_found.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background: #111;  Placeholder pour l'affiche */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+    overflow: hidden;
+}
+
+.details-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.details-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.details-info h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: #fa89e1;
+}
+
+.details-info p {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    color: #faa2e7;
+}
+
+.synopsis-title {
+    font-size: 1.2rem;
+    color: #faa2e7;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.synopsis-text {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.details-actions {
+    margin-top: 30px;
+}
+
+/* Style du texte */
+.para {
+    width: 100%; 
+    text-align: center; 
+    grid-column: 1/-1;
+    color: #20131d;
+    font-family: "Mermaid";
+    backdrop-filter: blur(8px);
+    mask-image: radial-gradient(
+        /* Définit la forme (ellipse pour un effet plus doux sur les bords) et la position (at center) */
+        ellipse at center, 
+        
+        /* 1er palier : Centre - Le flou est au maximum (opaque) */
+        rgba(0, 0, 0, 1) 0%, 
+        
+        /* 2ème palier : Zone de transition - Maintient l'opacité sur la zone principale */
+        rgba(0, 0, 0, 1) 50%,
+        
+        /* 3ème palier : Transition douce - Le flou commence à disparaître */
+        rgba(0, 0, 0, 0.5) 75%, 
+        
+        /* 4ème palier : Extrémité - Le flou est invisible (transparent) */
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+/* Rendre le tout responsive pour mobile 
+@media (max-width: 600px) {
+    .details-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .details-info {
+        text-align: center;
+        margin-top: 20px;
+    }
+} */

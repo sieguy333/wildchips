@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildflix</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <video src="img/templates_powerbi_gif_02.mp4" id="background-video" autoplay loop muted playsinline></video>
+
+    <div id="cut-overlay" class="curtains-closed">
+        <div class="curtain curtain-left"></div>
+        <div class="cut-line"></div>
+        <div class="curtain curtain-right"></div>
+    </div>
+
+    <div id="intro-screen">
+        <div id="intro-logo" class="logo"><img src="img/logo_wildflix.png" alt=""></div>
+    </div>
+
+    <div id="login-screen" class="hidden">
+        <div class="login-left">
+            <h1 class="titre">Bienvenue sur<br>notre application</h1>
+            <div class="input-group">
+                <input type="email" placeholder="E-mail" id="email-input">
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Mot de passe" id="password-input">
+            </div>
+            
+            <div class="create-account">
+                Pas encore de compte ? <button class="btn_count btn-skip" id="signup-btn">Cliquez ici</button> 
+            </div>
+            <button class="btn" id="login-btn">S'identifier</button>
+        </div>
+        <div class="login-right">
+            <div class="logo logo-floating" ><img src="img/logo_wildflix.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="signup-screen" class="hidden">
+    </div>
+
+    <div id="app-screen" class="hidden">
+        <div class="logo logo-floating" style="font-size: 2rem;"><img src="img/logo_wildflix.png" alt=""></div>
+        
+        <div id="search-container" class="question-box">
+            <h2>Quel film veux-tu comme référence ?</h2>
+            <div class="options-grid">
+                <input type="text" id="search-input" placeholder="Rentre un titre de film" style="text-align: center;">
+                <button class="btn" id="search-btn">Lance la recherche (mais trop loin)</button>
+            </div>
+            
+            <div id="disambiguation-area" class="hidden" style="margin-top:20px;">
+                <p>J'ai trouvé plusieurs films, lequel est le bon ?</p>
+                <div id="candidates-list" class="options-grid" style="justify-content: center;"></div>
+            </div>
+        </div>
+
+        <div id="movie-details-screen" class="hidden">
+        </div>
+        
+        <div id="results-grid" class="hidden"></div>
+        <div id="action-buttons" class="hidden results-actions">
+            <button id="restart-btn" class="btn">Recommencer</button>
+            <button id="logout-btn" class="btn btn-logout">Se déconnecter</button>
+        </div>
+    </div>
+
+    <audio id="login-sound" src="audio/bobobobooobo.mp3" preload="auto"></audio>
+    <audio id="genre-click-sound" src="audio/punch_sound.mp3" preload="auto"></audio>
+
+    <script src="json/script.js"></script>
+</body>
+</html>
