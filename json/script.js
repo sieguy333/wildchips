@@ -78,25 +78,18 @@ function showCandidates(candidates) {
     list.innerHTML = '';
 
     candidates.forEach(film => {
-    // On utilise UNIQUEMENT ce que le Python envoie dans .loc[:]
-    const title = film.movie_title_fr || "Titre inconnu";
-    const year = film.released_year || "N/A";
-    
-    const btn = document.createElement('button');
-    btn.className = 'btn btn-skip'; 
-    btn.style.margin = "5px";
-    btn.innerHTML = `${title} <br><small>(${year})</small>`;
-    
-    // On s'assure que l'ID est bien passé
-    const filmId = film.index_id;
-    
-    btn.onclick = () => {
-        // On force la disparition de la zone de choix
-        document.getElementById('disambiguation-area').classList.add('hidden');
-        getRecommendations(filmId);
-    }
-    list.appendChild(btn);
-});
+        const titleToDisplay = film.movie_title_fr;
+        const title = titleToDisplay || film.titre_fr_capitalize;
+        /* Pour chaque candidat, on crée un bouton */
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-skip'; 
+        btn.innerHTML = `${title} <br><small>(${film.released_year})</small>`;
+        btn.onclick = () => {
+            getRecommendations(film.index_id);
+        }
+        list.appendChild(btn);
+    });
+}
 
 /* Logique de recommandation API */
 
@@ -448,5 +441,6 @@ function hideMovieDetails() {
     document.getElementById('action-buttons').classList.remove('hidden');
 
 }
+
 
 
