@@ -379,7 +379,7 @@ h2 { font-weight: 400; color: #faa2e7; margin-bottom: 10px; }
     width: auto; 
 }
 
-/* Style du bloc de questions
+/* Style de la liste de films issus de l'entrée utilisateur */
 .question-box {
     margin-top: 1%;
     width: 85%; max-width: 650px;
@@ -387,12 +387,12 @@ h2 { font-weight: 400; color: #faa2e7; margin-bottom: 10px; }
     padding: 50px;
     background: linear-gradient(160deg, #3f1b27 0%, #1f0e14 100%);
     border-radius: 25px;
-    /* border: 1px solid rgba(255,255,255,0.05); 
+    /* border: 1px solid rgba(255,255,255,0.05); */
     border: 1px solid #492232;
     box-shadow: 0 20px 50px rgba(0,0,0,0.6);
     animation: fadeIn 0.6s ease-out;
 }
-*/
+
 .options-grid {
     display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 45px;
 }
@@ -581,4 +581,5 @@ h2 { font-weight: 400; color: #faa2e7; margin-bottom: 10px; }
         text-align: center;
         margin-top: 20px;
     }
+
 } */
