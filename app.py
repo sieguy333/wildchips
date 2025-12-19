@@ -20,8 +20,8 @@ try:
     matrice_similarite = cosine_similarity(df)
     df_similarite = pd.DataFrame(matrice_similarite, index=df.index, columns=df.index)
 
-    matrice_similarite_genres = cosine_similarity(df_genres)
-    df_similarite_genres = pd.DataFrame(matrice_similarite_genres, index=df.index, columns=df.index)
+    # matrice_similarite_genres = cosine_similarity(df_genres)
+    # df_similarite_genres = pd.DataFrame(matrice_similarite_genres, index=df.index, columns=df.index)
     
     # Note : On s'assure que l'index est accessible
     df_2 = df_2.reset_index(drop=True) 
@@ -133,11 +133,28 @@ def reco():
 
         # Recommandation par genre:
 
-        score_genre_film_utilisateur = df_similarite_genres.iloc[idx]
-        index_genres_recommandes = score_genre_film_utilisateur.sort_values(ascending = False).head(6).index
-        index_5_genres_films = index_genres_recommandes[1:]
-        genres_recommandes = df_2.iloc[index_5_genres_films][colonnes_a_afficher]
-
+        film_ref = df_2.iloc[idx]
+        liste_genres = film_ref["genres"].split('|')
+        
+        g1 = liste_genres[0]
+        # On cherche les films qui contiennent g1
+        condition = df_2['genres'].str.contains(g1, na=False)
+        
+        # Si un deuxième genre existe, on ajoute la condition ET g2
+        if len(liste_genres) > 1:
+            g2 = liste_genres[1]
+            condition = condition & df_2['genres'].str.contains(g2, na=False)
+        
+        # On applique le filtre (en excluant le film de référence)
+        genres_recommandes = df_2[condition & (df_2.index != idx)].sort_values(by='imdb_score', ascending=False).head(5)
+        
+        
+        # Si les deux genres sont trop rares et ne donnent rien, on se rabat sur le premier genre seul
+        if genres_recommandes.empty:
+            genres_recommandes = df_2[
+                (df_2['genres'].str.contains(g1, na=False)) & (df_2.index != idx)
+            ].sort_values(by='imdb_score', ascending=False).head(5)
+        
         # Recommandation par acteur:
 
         acteurs_film_utilisateur = df_acteurs.iloc[idx]
@@ -179,4 +196,5 @@ def reco():
         return jsonify({"error": f"Erreur interne lors du calcul. Vérifiez les données pour le film {idx}."}), 500
 
 if __name__ == '__main__':
+
     app.run(debug=True, port=5000)
