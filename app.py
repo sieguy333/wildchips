@@ -104,12 +104,6 @@ def reco():
         if idx not in df_similarite.index:
             print(f"ERREUR: ID {idx} n'existe pas dans la matrice de similarité.")
             return jsonify({"error": f"Le film avec l'ID {idx} est introuvable pour la recommandation."}), 404
-
-        
-        # AJOUTEZ UN LOG POUR LE FILM AVANT LE CALCUL
-        # film_reference = df_2.loc[idx]
-        # print(f"Lancement de la reco pour: {film_reference['movie_title_fr']}")
-        
         
         # Colonnes à renvoyer au front
         colonnes_a_afficher = ["movie_title_fr", 
@@ -198,4 +192,5 @@ def reco():
 if __name__ == '__main__':
 
     app.run(debug=True, port=5000)
+
 
