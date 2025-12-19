@@ -60,7 +60,7 @@ def search_film():
     
     elif len(resultats) > 1:
         # On crée directement une copie avec toutes les colonnes nécessaires
-        candidates = resultats.loc[:, ['movie_title_fr', 'released_year']].copy()
+        candidates = resultats.loc[:, ['movie_title_fr', 'released_year', 'titre_fr_capitalize']].copy()
         
         # Ajouter la colonne 'index_id' en garantissant que l'objet est une copie
         candidates.loc[:, 'index_id'] = resultats.index
@@ -198,3 +198,4 @@ def reco():
 if __name__ == '__main__':
 
     app.run(debug=True, port=5000)
+
